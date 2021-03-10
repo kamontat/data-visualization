@@ -2,16 +2,51 @@
 # https://github.com/firebase/firebase-tools
 
 name: Deploy to Firebase Hosting on PR
-'on': pull_request
+on: pull_request
+
 jobs:
   build_and_preview:
-    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: true
+      matrix:
+        node-version:
+          - 15 # - Current
+        os-version:
+          - ubuntu-latest
+    runs-on: ${{ matrix.os-version }}
+    env:
+      OS_VERSION: "${{ matrix.os-version }}"
+      NODE_VERSION: "${{ matrix.node-version }}"
     steps:
-      - uses: actions/checkout@v2
+      - uses: actions/checkout@master
+      - name: Node.js (${{ matrix.node-version }})
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - name: Get yarn cache directory path
+        id: yarn-cache
+        run: echo "::set-output name=path::$(yarn cache dir)"
+      - name: Restore cache
+        id: cache
+        uses: actions/cache@v2
+        with:
+          path: ${{ steps.yarn-cache.outputs.path }}
+          key: yarn-${{ runner.os }}-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: yarn-${{ runner.os }}-
+
+      - name: Print env information
+        run: echo "node $NODE_VERSION ($OS_VERSION)"
+      - name: Download dependencies
+        run: yarn --verbose --prefer-offline
+        timeout-minutes: 10
+      - name: Build svelte public data
+        run: yarn build
+
       - uses: FirebaseExtended/action-hosting-deploy@v0
         with:
-          repoToken: '${{ secrets.GITHUB_TOKEN }}'
-          firebaseServiceAccount: '${{ secrets.FIREBASE_SERVICE_ACCOUNT_FINNOMENA_PORT }}'
+          repoToken: "${{ secrets.GITHUB_TOKEN }}"
+          firebaseServiceAccount: "${{ secrets.FIREBASE_SERVICE_ACCOUNT_FINNOMENA_PORT }}"
           projectId: finnomena-port
         env:
           FIREBASE_CLI_PREVIEWS: hostingchannels
