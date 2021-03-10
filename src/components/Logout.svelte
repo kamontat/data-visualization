@@ -1,21 +1,11 @@
 <script lang="ts">
   import type Firebase from "firebase/app";
-  export let firebase: typeof Firebase;
+  import { logout } from "../actions";
 
-  let error: Error = undefined;
-  const logout = () => {
-    firebase
-      .auth()
-      .signOut()
-      .catch(e => {
-        error = e;
-      });
-  };
+  export let user: Firebase.User;
 </script>
 
 <div>
   <button on:click={logout}>Logout</button>
-  {#if error}
-    <p>{error.message}</p>
-  {/if}
+  <span>{user?.email}</span>
 </div>

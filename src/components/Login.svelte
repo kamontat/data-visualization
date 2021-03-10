@@ -1,20 +1,15 @@
 <script lang="ts">
-  import type Firebase from "firebase/app";
-  export let firebase: typeof Firebase;
-
-  let error: Error = undefined;
+  import { login } from "../actions";
 
   let email: string = "";
   let password: string = "";
+  let error: Error = undefined;
+
   const submit = (event: MouseEvent) => {
     event.preventDefault();
-
-    firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password)
-      .catch(e => {
-        error = e;
-      });
+    login(email, password).catch(e => {
+      error = e;
+    });
   };
 </script>
 

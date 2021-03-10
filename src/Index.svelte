@@ -8,7 +8,6 @@
   import Input from "./components/Input.svelte";
 
   let user: Firebase.User = undefined;
-
   firebase.auth().onAuthStateChanged(function (login) {
     user = login;
   });
@@ -17,16 +16,16 @@
 <div>
   <nav>
     {#if user === null}
-      <Login {firebase} />
+      <Login />
     {:else}
-      <Logout {firebase} />
+      <Logout {user} />
     {/if}
   </nav>
 
   <main>
     {#if user}
-      <Input {firebase} {user} />
-      <Graph {firebase} {user} />
+      <Input />
+      <Graph />
     {/if}
   </main>
 </div>
