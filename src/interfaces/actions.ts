@@ -6,7 +6,7 @@ export type LoginFn = (email: string, password: string) => Promise<Firebase.auth
 
 export type LogoutFn = () => Promise<void>
 
-export type PriceCreator = (price: number) => Promise<void>
+export type PriceCreator = (price: Partial<Price>) => Promise<void>
 
 export type PriceReceivers = () => Promise<PriceObject[]>
 

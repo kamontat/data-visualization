@@ -3,11 +3,14 @@ import { spawn } from "child_process";
 import svelte from "rollup-plugin-svelte";
 import commonjs from "@rollup/plugin-commonjs";
 import resolve from "@rollup/plugin-node-resolve";
+import replace from "@rollup/plugin-replace";
 import livereload from "rollup-plugin-livereload";
 import { terser } from "rollup-plugin-terser";
 import sveltePreprocess from "svelte-preprocess";
 import typescript from "@rollup/plugin-typescript";
 import css from "rollup-plugin-css-only";
+
+import pjson from "./package.json";
 
 const production = !process.env.ROLLUP_WATCH;
 
@@ -42,11 +45,25 @@ export default {
     inlineDynamicImports: true,
   },
   plugins: [
+    replace({
+      preventAssignment: false,
+      values: {
+        AUTO_BUILD_MODE: production ? "production" : "development",
+        AUTO_BUILD_DATE: new Date().toString(),
+        AUTO_BUILD_NAME: pjson.name,
+        AUTO_BUILD_DESC: pjson.description,
+        AUTO_BUILD_VERSION: pjson.version,
+        AUTO_BUILD_LICENSE: pjson.license,
+        AUTO_BUILD_AUTHOR_NAME: pjson.author.name,
+        AUTO_BUILD_AUTHOR_URL: pjson.author.url,
+      },
+    }),
+
     svelte({
       preprocess: sveltePreprocess({ sourceMap: !production }),
       compilerOptions: {
         // enable run-time checks when not in production
-        dev: !production
+        dev: !production,
       },
     }),
 
@@ -63,6 +80,7 @@ export default {
       browser: true,
       dedupe: ["svelte"],
     }),
+
     commonjs(),
     typescript({
       sourceMap: !production,

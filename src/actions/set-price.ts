@@ -1,18 +1,15 @@
 import type { PriceCreator } from "../interfaces/actions";
-import type { Price } from "../interfaces/price";
 
 import firebase from "firebase/app";
 
 import { getRef } from "./internal/get-ref";
+import { ensurePrice } from "./internal/price";
 
-const setPrice: PriceCreator = async (price: number) => {
-  const newPrice = getRef(firebase, "prices").push()
-  
-  await getRef(firebase, "price").set(newPrice.key)
-  await newPrice.set({
-    amount: price,
-    timestamp: +new Date()
-  } as Price)
-}
+const setPrice: PriceCreator = async price => {
+  const newPrice = getRef(firebase, "prices").push();
+
+  await getRef(firebase, "price").set(newPrice.key);
+  await newPrice.set(ensurePrice(price));
+};
 
 export default setPrice;

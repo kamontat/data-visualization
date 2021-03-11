@@ -12,14 +12,26 @@ firebase.initializeApp({
   projectId: "finnomena-port",
   storageBucket: "finnomena-port.appspot.com",
   messagingSenderId: "28883396382",
-  appId: "1:28883396382:web:d75c0d951c06c39bb88b0f"
+  appId: "1:28883396382:web:d75c0d951c06c39bb88b0f",
 });
 
 const index = new Index({
   target: document.body,
   props: {
-    firebase
-  }
+    firebase,
+    info: {
+      mode: "AUTO_BUILD_MODE",
+      name: "AUTO_BUILD_NAME",
+      description: "AUTO_BUILD_DESC",
+      version: "AUTO_BUILD_VERSION",
+      license: "AUTO_BUILD_LICENSE",
+      date: new Date("AUTO_BUILD_DATE"),
+      author: {
+        name: "AUTO_BUILD_AUTHOR_NAME",
+        url: "AUTO_BUILD_AUTHOR_URL",
+      },
+    },
+  },
 });
 
 export default index;

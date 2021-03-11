@@ -1,31 +1,18 @@
 import type { PriceReceiver } from "../interfaces/actions";
-import type { Price } from "../interfaces/price";
 
 import firebase from "firebase/app";
 
 import { getRef } from "./internal/get-ref";
-
+import { convertPrice, emptyPriceObject } from "./internal/price";
 
 const latestPrices: PriceReceiver = async () => {
-  const latest = await getRef(firebase, "price").get()
-  const key = latest.val() ?? "unknown"
+  const latest = await getRef(firebase, "price").get();
+  const key = latest.val();
 
-  if (key === "unknown") {
-    return {
-      key,
-      amount: -1,
-      timestamp: -1
-    }
-  }
+  if (!key) return emptyPriceObject();
 
-
-  const data = await getRef(firebase, "prices").child(key).get()
-  const obj: Price = data.val()
-  return {
-    key,
-    amount: obj.amount,
-    timestamp: obj.timestamp
-  }
-}
+  const data = await getRef(firebase, "prices").child(key).get();
+  return convertPrice(key, data.val());
+};
 
 export default latestPrices;
