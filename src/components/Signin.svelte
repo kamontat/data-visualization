@@ -72,4 +72,15 @@
     display: flex;
     align-items: center;
   }
+
+  @media screen and (max-width: 650px) {
+    form {
+      flex-wrap: wrap;
+      align-items: baseline;
+    }
+
+    form > *:not(:nth-last-child(1)) {
+      margin-bottom: var(--space-sm);
+    }
+  }
 </style>

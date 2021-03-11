@@ -70,6 +70,7 @@
   @media screen and (max-width: 650px) {
     form {
       flex-wrap: wrap;
+      align-items: baseline;
     }
 
     form > *:not(:nth-last-child(1)) {
