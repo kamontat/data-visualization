@@ -5,7 +5,7 @@
 
   import { login, logout } from "../actions";
 
-  import Loading from "./components/Loading.svelte";
+  import Loading from "./Loading.svelte";
 
   let email: string = "";
   let password: string = "";
