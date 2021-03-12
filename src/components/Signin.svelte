@@ -1,9 +1,6 @@
 <script lang="ts">
-  import type Firebase from "firebase/app";
-  export let user: Firebase.User;
-  export let ready: boolean;
-
   import { login, logout } from "../actions";
+  import { user, isLogin, isReady } from "../stores/user";
 
   import Loading from "./Loading.svelte";
 
@@ -11,13 +8,12 @@
   let password: string = "";
   let error: Error = undefined;
 
-  $: isUserLogin = user !== null && user !== undefined;
-  $: submitText = isUserLogin ? "Signout" : "Signin";
+  $: submitText = $isLogin ? "Signout" : "Signin";
 
   const submit = (event: MouseEvent) => {
     event.preventDefault();
 
-    const promise = isUserLogin ? logout() : login(email, password);
+    const promise = $isLogin ? logout() : login(email, password);
     promise
       .then(() => {
         error = undefined;
@@ -29,7 +25,7 @@
   };
 </script>
 
-{#if ready}
+{#if $isReady}
   <form>
     {#if error !== undefined}
       <div class="message">
@@ -37,9 +33,9 @@
       </div>
     {/if}
 
-    {#if isUserLogin}
+    {#if $isLogin}
       <div class="message">
-        <span>{user?.email}</span>
+        <span>{$user?.email}</span>
       </div>
     {:else}
       <input name="email" type="email" autocomplete="email" placeholder="Email" bind:value={email} />

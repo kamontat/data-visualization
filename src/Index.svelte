@@ -15,33 +15,51 @@
   import Signin from "./components/Signin.svelte";
 
   import { updateApplication } from "./stores/application";
-
   updateApplication(info);
 
-  let ready: boolean = false;
-  let user: Firebase.User = undefined;
-  firebase.auth().onAuthStateChanged(function (login) {
-    user = login;
-    ready = true;
+  import { updateDataPoint, pushDataPoint } from "./stores/data-point";
+  import { updateDataGroup, pushDataGroup } from "./stores/data-group";
+  import { user, isReady, isLogin, updateUser } from "./stores/user";
+  import { isExist } from "./firebase/utils/checker";
+
+  updateUser(firebase);
+
+  user.subscribe(user => {
+    if (isExist(user)) {
+      const unsubscription = [
+        updateDataPoint(firebase),
+        updateDataGroup(firebase),
+        pushDataPoint(firebase),
+        pushDataGroup(firebase),
+      ];
+
+      return () => {
+        unsubscription.forEach(unsubscribe => {
+          unsubscribe();
+        });
+      };
+    }
   });
 </script>
 
 <Seo />
 <Container>
-  <Navbar>
-    <div slot="left">
-      {#if user}
-        <Input />
-      {/if}
-    </div>
+  {#if $isReady}
+    <Navbar>
+      <div slot="left">
+        {#if $isLogin}
+          <Input />
+        {/if}
+      </div>
 
-    <div slot="right">
-      <Signin {user} {ready} />
-    </div>
-  </Navbar>
+      <div slot="right">
+        <Signin />
+      </div>
+    </Navbar>
+  {/if}
 
   <main>
-    {#if user}
+    {#if $isLogin}
       <Graph />
     {/if}
   </main>

@@ -7,35 +7,29 @@
   import { interfaces } from "@carbon/charts";
   import { LineChart } from "@carbon/charts-svelte";
 
-  import { listenPrices } from "../actions";
-  import { PriceAction } from "../interfaces/actions";
-  import { priceCategoryMap } from "../stores/price-category";
+  import { dataGroup } from "../stores/data-group";
+  import { dataPoint } from "../stores/data-point";
 
   let chart: AxisChart;
 
   let list: D3Datasource[] = [];
-  priceCategoryMap.subscribe(category => {
-    const exist =
-      category && // 👈 null and undefined check
-      Object.keys(category).length > 0; // 👈 keys must has more than 0
 
-    if (exist) {
-      listenPrices((action, data) => {
-        if (action === PriceAction.ADDED) {
-          const groupName = category[data.category];
-          list.push({
-            group: groupName,
-            date: new Date(data.timestamp),
-            value: data.amount,
-          });
+  $: {
+    const pointKeys = Object.keys($dataPoint);
+    const groupKeys = Object.keys($dataGroup);
 
-          list.sort((a, b) => a.date.valueOf() - b.date.valueOf());
-        }
-
-        chart.model.setData(list);
-      });
+    if (pointKeys.length > 0 && groupKeys.length > 0) {
+      list = pointKeys
+        .map(key => {
+          return {
+            group: $dataGroup[$dataPoint[key].group].name,
+            value: $dataPoint[key].value,
+            date: new Date($dataPoint[key].timestamp),
+          };
+        })
+        .sort((a, b) => a.date.valueOf() - b.date.valueOf());
     }
-  });
+  }
 
   const options: interfaces.LineChartOptions = {
     title: "Visualization",

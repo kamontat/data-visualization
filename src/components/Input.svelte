@@ -1,60 +1,72 @@
 <script lang="ts">
-  import type { PriceCategory } from "../stores/price-category";
+  import type { DataPoints } from "../firebase/interfaces/point";
 
-  import { latestPrices, setPrice } from "../actions";
-  import { priceCategories } from "../stores/price-category";
+  import { writable } from "svelte/store";
+
+  import { dataPoint } from "../stores/data-point";
+  import { dataGroup } from "../stores/data-group";
+
+  import { convertDataPoints } from "../firebase/models/point";
+  import { defaultGroup } from "../firebase/models/group";
+  import { toDateString } from "../firebase/utils/date";
 
   import Loading from "./Loading.svelte";
+  import { genUID } from "src/firebase/utils/uid";
 
-  const _now = new Date();
-  const p = (n: number) => n.toString().padStart(2, "0");
-  const now = `${_now.getFullYear()}-${p(_now.getMonth() + 1)}-${p(_now.getDate())}`;
+  let group = writable(defaultGroup["-"]);
 
-  let disabled: boolean = false;
+  let value: number = undefined;
+  let date: string = toDateString();
 
-  let category: PriceCategory = undefined;
-  let price: number = undefined;
-  let date: string = now;
+  // call this method when data group changes
+  const updateValue = (points: DataPoints) => {
+    return () => {
+      const keys = Object.keys(points).filter(key => points[key].group === $group.id);
+      const latest = keys.sort((a, b) => points[a].timestamp - points[b].timestamp).pop();
 
-  latestPrices()
-    .then(p => {
-      price = p.amount;
-    })
-    .catch(e => {
-      console.error(e);
-      price = 0;
-    });
+      if (latest) value = points[latest].value;
+      else value = 0; // point is not exist
+    };
+  };
+
+  dataPoint.subscribe(points => {
+    updateValue(points)();
+  });
 
   const submit = () => {
-    disabled = true;
-    setPrice({ category: category.id, amount: price, timestamp: +new Date(date) })
-      .then(() => {
-        disabled = false;
-      })
-      .catch(e => {
-        console.error(e);
-        price = 0;
-        disabled = false;
-      });
+    dataPoint.update(points => {
+      const timestamp = +new Date(date);
+      const id = genUID(timestamp);
+      return Object.assign(
+        points,
+        convertDataPoints(Object.keys(points).length.toString(), {
+          id,
+          value,
+          group: $group.id,
+          timestamp,
+        })
+      );
+    });
   };
 </script>
 
-{#if price === undefined}
-  <Loading />
-{:else}
+{#if value !== undefined && Object.keys($dataGroup).length > 0}
   <form>
-    <select bind:value={category}>
-      {#each $priceCategories as category}
-        <option id={category.id} value={category}>
-          {category.text}
+    <!-- svelte-ignore a11y-no-onchange -->
+    <select bind:value={$group} on:change={updateValue($dataPoint)}>
+      {#each Object.keys($dataGroup) as groupKey}
+        <option id={groupKey} value={$dataGroup[groupKey]}>
+          {$dataGroup[groupKey].name}
         </option>
       {/each}
     </select>
-    <input type="number" bind:value={price} />
-    <input type="date" bind:value={date} />
+    <input type="number" bind:value />
+    <input type="datetime-local" bind:value={date} />
 
-    <button type="button" on:click={submit} {disabled}>Submit</button>
+    <button type="button" on:click={submit}>Submit</button>
   </form>
+{:else}
+  <Loading />
 {/if}
 
 <style>
