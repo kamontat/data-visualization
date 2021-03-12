@@ -39,6 +39,13 @@ export const updateDataGroup = (firebase: typeof Firebase): (() => void) => {
   const changingAction = ref.on("child_changed", d => action(Type.CHANGED, d));
   const removingAction = ref.on("child_removed", d => action(Type.REMOVED, d));
 
+  // handle when no data on server
+  ref.get().then(v => {
+    if (!v.exists()) {
+      dataGroup.set(defaultGroup);
+    }
+  });
+
   return () => {
     ref.off("child_added", addingAction);
     ref.off("child_changed", changingAction);
@@ -68,9 +75,6 @@ export const pushDataGroup = (firebase: typeof Firebase): (() => void) => {
         logger("abort transacion due to data local and server are synced");
         return;
       });
-    } else {
-      logger("initial default value on server");
-      ref.set(defaultGroup);
     }
   });
 };
