@@ -18,6 +18,10 @@ enum Type {
   REMOVED = "removed",
 }
 
+export const clearDataPoint = (): void => {
+  dataPoint.set({});
+};
+
 export const updateDataPoint = (firebase: typeof Firebase): (() => void) => {
   const action = (type: Type, data: Firebase.database.DataSnapshot) => {
     logger("Data got '%s'", type.toString());

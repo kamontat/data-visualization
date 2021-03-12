@@ -18,6 +18,10 @@ enum Type {
   REMOVED = "removed",
 }
 
+export const clearDataGroup = (): void => {
+  dataGroup.set({});
+};
+
 export const updateDataGroup = (firebase: typeof Firebase): (() => void) => {
   const action = (type: Type, data: Firebase.database.DataSnapshot) => {
     logger("Data got '%s'", type.toString());
@@ -44,11 +48,12 @@ export const updateDataGroup = (firebase: typeof Firebase): (() => void) => {
 
 export const pushDataGroup = (firebase: typeof Firebase): (() => void) => {
   return dataGroup.subscribe(group => {
+    const ref = buildRef(firebase, GROUP_PATH);
+
     if (Object.keys(group).length > 0) {
-      const ref = buildRef(firebase, GROUP_PATH);
       ref.transaction(current => {
         if (!current) {
-          logger("generate default value in server");
+          logger("generate default group on server");
           return defaultGroup;
         }
 
@@ -63,6 +68,9 @@ export const pushDataGroup = (firebase: typeof Firebase): (() => void) => {
         logger("abort transacion due to data local and server are synced");
         return;
       });
+    } else {
+      logger("initial default value on server");
+      ref.set(defaultGroup);
     }
   });
 };
