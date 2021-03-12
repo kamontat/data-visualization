@@ -14,7 +14,7 @@
     display: flex;
     flex-direction: row;
 
-    align-items: center;
+    align-items: flex-start;
 
     padding-top: var(--space-sm);
     padding-bottom: var(--space-sm);
@@ -28,7 +28,6 @@
   @media screen and (max-width: 1000px) {
     nav {
       flex-direction: column-reverse;
-      align-items: flex-start;
     }
 
     .right,

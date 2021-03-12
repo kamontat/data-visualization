@@ -7,11 +7,17 @@
   import { dataGroup } from "../stores/data-group";
 
   import { convertDataPoints } from "../firebase/models/point";
-  import { defaultGroup } from "../firebase/models/group";
+  import { convertGroup, defaultGroup } from "../firebase/models/group";
   import { toDateString } from "../firebase/utils/date";
+  import { genUID } from "../firebase/utils/uid";
+  import { isString } from "../firebase/utils/checker";
 
   import Loading from "./Loading.svelte";
-  import { genUID } from "src/firebase/utils/uid";
+
+  let groupEditor: boolean = false; // enabled group editor mode
+
+  let groupKey: string = "";
+  let groupValue: string = "";
 
   let group = writable(defaultGroup["-"]);
 
@@ -48,28 +54,69 @@
       );
     });
   };
+
+  const submitGroup = () => {
+    if (isString(groupKey) && isString(groupValue)) {
+      dataGroup.update(group => {
+        const timestamp = +new Date();
+        const obj = Object.assign(
+          group,
+          convertGroup(groupKey, {
+            id: groupKey,
+            name: groupValue,
+            timestamp,
+          })
+        );
+
+        groupKey = "";
+        groupValue = "";
+
+        return obj;
+      });
+    }
+  };
 </script>
 
 {#if value !== undefined && Object.keys($dataGroup).length > 0}
-  <form>
-    <!-- svelte-ignore a11y-no-onchange -->
-    <select bind:value={$group} on:change={updateValue($dataPoint)}>
-      {#each Object.keys($dataGroup) as groupKey}
-        <option id={groupKey} value={$dataGroup[groupKey]}>
-          {$dataGroup[groupKey].name}
-        </option>
-      {/each}
-    </select>
-    <input type="number" bind:value />
-    <input type="datetime-local" bind:value={date} />
+  <div class="root">
+    <form>
+      <!-- svelte-ignore a11y-no-onchange -->
+      <select bind:value={$group} on:change={updateValue($dataPoint)}>
+        {#each Object.keys($dataGroup) as groupKey}
+          <option id={groupKey} value={$dataGroup[groupKey]}>
+            {$dataGroup[groupKey].name}
+          </option>
+        {/each}
+      </select>
+      <input type="number" bind:value />
+      <input type="datetime-local" bind:value={date} />
 
-    <button type="button" on:click={submit}>Submit</button>
-  </form>
+      <button type="button" on:click={submit}>Submit</button>
+    </form>
+
+    <form>
+      <input type="checkbox" bind:checked={groupEditor} />
+      {#if groupEditor}
+        <input type="text" placeholder="group key" bind:value={groupKey} />
+        <input type="text" placeholder="group value" bind:value={groupValue} />
+        <button type="button" on:click={submitGroup}>New group</button>
+      {/if}
+    </form>
+  </div>
 {:else}
   <Loading />
 {/if}
 
 <style>
+  .root {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .root > form:not(:nth-last-child(1)) {
+    margin-bottom: var(--space-sm);
+  }
+
   form {
     display: flex;
     align-items: stretch;
