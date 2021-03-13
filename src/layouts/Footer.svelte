@@ -4,14 +4,14 @@
 
 <footer>
   <div class="items">
-    <a class="item" href="https://github.com/kamontat/finnomena-port" target="_blank"> {$application.name} </a>
-    <a class="item" href="https://github.com/kamontat/finnomena-port/releases/latest" target="_blank">
+    <a class="item" href="https://github.com/kamontat/data-visualization" target="_blank"> {$application.name} </a>
+    <a class="item" href="https://github.com/kamontat/data-visualization/releases/latest" target="_blank">
       v{$application.version}
     </a>
 
     <img class="item" src="/favicon.png" alt="application icon" width="35px" />
 
-    <a class="item" href="https://github.com/kamontat/finnomena-port/blob/main/LICENSE" target="_blank">
+    <a class="item" href="https://github.com/kamontat/data-visualization/blob/main/LICENSE" target="_blank">
       {$application.license}
     </a>
     <a class="item" href={$application.author.url} target="_blank"> {$application.author.name} </a>
