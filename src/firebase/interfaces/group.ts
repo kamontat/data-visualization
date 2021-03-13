@@ -1,6 +1,7 @@
 export interface DataGroupDetail {
   id: string;
   name: string;
+  description: string;
   timestamp: number;
 }
 

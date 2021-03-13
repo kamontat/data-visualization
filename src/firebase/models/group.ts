@@ -2,10 +2,11 @@ import type { DataGroup, DataGroupDetail } from "../interfaces/group";
 
 import { isExist } from "../utils/checker";
 
-export const defaultGroup = {
+export const defaultGroup: DataGroup = {
   "-": {
     id: "-",
     name: "Default",
+    description: "",
     timestamp: +new Date(),
   },
 };
@@ -19,6 +20,7 @@ export const convertGroupDetail = (key?: string, detail?: Partial<DataGroupDetai
   return {
     id: _key,
     name: detail?.name,
+    description: detail?.description ?? "",
     timestamp: detail?.timestamp ?? +new Date(),
   };
 };

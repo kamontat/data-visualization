@@ -80,6 +80,10 @@
 {#if value !== undefined && Object.keys($dataGroup).length > 0}
   <div class="root">
     <form>
+      <span>{$group.description}</span>
+    </form>
+
+    <form>
       <!-- svelte-ignore a11y-no-onchange -->
       <select bind:value={$group} on:change={updateValue($dataPoint)}>
         {#each Object.keys($dataGroup) as groupKey}
@@ -113,7 +117,7 @@
     flex-direction: column;
   }
 
-  .root > form:not(:nth-last-child(1)) {
+  .root > *:not(:nth-last-child(1)) {
     margin-bottom: var(--space-sm);
   }
 
