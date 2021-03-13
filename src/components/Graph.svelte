@@ -14,6 +14,9 @@
 
   let list: D3Datasource[] = [];
 
+  const beforeNow = 7 * 24 * 60 * 60 * 1000;
+  const afterNow = 1 * 24 * 60 * 60 * 1000;
+  const now = +new Date();
   const options: interfaces.LineChartOptions = {
     title: "Visualization",
     height: "400px",
@@ -47,6 +50,16 @@
     },
     color: {
       scale: {},
+    },
+    tooltip: {
+      enabled: true,
+      showTotal: true,
+    },
+    zoomBar: {
+      top: {
+        enabled: true,
+        initialZoomDomain: [new Date(now - beforeNow), new Date(now + afterNow)],
+      },
     },
   };
 
