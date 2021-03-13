@@ -43,6 +43,7 @@
     },
     timeScale: {
       showDayName: false,
+      addSpaceOnEdges: 1,
     },
     color: {
       scale: {},
