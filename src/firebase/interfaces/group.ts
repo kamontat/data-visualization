@@ -2,6 +2,7 @@ export interface DataGroupDetail {
   id: string;
   name: string;
   description: string;
+  color: string;
   timestamp: number;
 }
 

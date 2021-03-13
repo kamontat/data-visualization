@@ -79,9 +79,11 @@
 
 {#if value !== undefined && Object.keys($dataGroup).length > 0}
   <div class="root">
-    <form>
-      <span>{$group.description}</span>
-    </form>
+    {#if $group.description != ""}
+      <form>
+        <span>{$group.description}</span>
+      </form>
+    {/if}
 
     <form>
       <!-- svelte-ignore a11y-no-onchange -->

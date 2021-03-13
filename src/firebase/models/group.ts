@@ -7,6 +7,7 @@ export const defaultGroup: DataGroup = {
     id: "-",
     name: "Default",
     description: "",
+    color: "",
     timestamp: +new Date(),
   },
 };
@@ -21,6 +22,7 @@ export const convertGroupDetail = (key?: string, detail?: Partial<DataGroupDetai
     id: _key,
     name: detail?.name,
     description: detail?.description ?? "",
+    color: detail?.color ?? "",
     timestamp: detail?.timestamp ?? +new Date(),
   };
 };
