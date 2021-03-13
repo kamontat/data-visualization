@@ -14,6 +14,41 @@
 
   let list: D3Datasource[] = [];
 
+  const options: interfaces.LineChartOptions = {
+    title: "Visualization",
+    height: "400px",
+    width: "100%",
+    curve: "curveBasis",
+    resizable: true,
+    axes: {
+      left: {},
+      bottom: {
+        scaleType: interfaces.ScaleTypes.TIME,
+        // thresholds: [
+        //   {
+        //     value: new Date(),
+        //     label: "Today",
+        //     fillColor: "orange",
+        //   },
+        // ],
+      },
+    },
+    legend: {
+      clickable: true,
+      alignment: interfaces.Alignments.CENTER,
+    },
+    data: {
+      loading: true,
+      selectedGroups: [],
+    },
+    timeScale: {
+      showDayName: false,
+    },
+    color: {
+      scale: {},
+    },
+  };
+
   $: {
     const pointKeys = Object.keys($dataPoint);
     const groupKeys = Object.keys($dataGroup);
@@ -28,24 +63,24 @@
           };
         })
         .sort((a, b) => a.date.valueOf() - b.date.valueOf());
+
+      if (list.length > 0) {
+        // update data loading to false
+        if (options.data.loading) options.data.loading = false;
+
+        options.color.scale = Object.keys($dataGroup).reduce((p, key) => {
+          const group = $dataGroup[key];
+          if (group.color !== "") {
+            return Object.assign(p, {
+              [group.name]: group.color,
+            });
+          }
+
+          return p;
+        }, {});
+      }
     }
   }
-
-  const options: interfaces.LineChartOptions = {
-    title: "Visualization",
-    height: "400px",
-    width: "100%",
-    curve: "curveMonotoneX",
-    axes: {
-      left: {},
-      bottom: {
-        scaleType: interfaces.ScaleTypes.TIME,
-      },
-    },
-    legend: {
-      clickable: true,
-    },
-  };
 </script>
 
 <LineChart data={list} {options} bind:chart />
