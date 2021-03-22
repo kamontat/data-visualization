@@ -58,6 +58,7 @@
     zoomBar: {
       top: {
         enabled: true,
+        type: "slider_view",
         initialZoomDomain: [new Date(now - beforeNow), new Date(now + afterNow)],
       },
     },
