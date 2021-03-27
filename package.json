@@ -41,7 +41,7 @@
     "@carbon/charts": "0.41.41",
     "@carbon/charts-svelte": "0.41.41",
     "carbon-components": "10.30.0",
-    "d3": "5.16.0",
+    "d3": "6.6.1",
     "debug": "4.3.1",
     "firebase": "8.3.1",
     "sirv-cli": "1.0.11"
