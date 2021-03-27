@@ -2,7 +2,7 @@
   "private": true,
   "name": "data-visualization",
   "description": "data visualization connect with firebase",
-  "version": "0.4.1",
+  "version": "0.4.2",
   "license": "BSD-3-Clause",
   "author": {
     "name": "kamontat",
