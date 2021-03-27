@@ -43,7 +43,7 @@
     "carbon-components": "10.30.0",
     "d3": "5.16.0",
     "debug": "4.3.1",
-    "firebase": "8.2.10",
+    "firebase": "8.3.1",
     "sirv-cli": "1.0.11"
   }
 }
