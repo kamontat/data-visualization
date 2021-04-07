@@ -7,6 +7,7 @@
 
   import Container from "./layouts/Container.svelte";
   import Navbar from "./layouts/Navbar.svelte";
+  import Main from "./layouts/Main.svelte";
   import Footer from "./layouts/Footer.svelte";
 
   import Seo from "./components/Seo.svelte";
@@ -58,18 +59,11 @@
     </Navbar>
   {/if}
 
-  
+  <Main>
     {#if $isLogin}
-      <main>
-        <Graph />
-      </main>
+      <Graph />
     {/if}
+  </Main>
 
   <Footer />
 </Container>
-
-<style>
-  main {
-    flex-grow: 1;
-  }
-</style>
