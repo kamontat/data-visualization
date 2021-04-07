@@ -7,6 +7,7 @@
 
   import Container from "./layouts/Container.svelte";
   import Navbar from "./layouts/Navbar.svelte";
+  import Main from "./layouts/Main.svelte";
   import Footer from "./layouts/Footer.svelte";
 
   import Seo from "./components/Seo.svelte";
@@ -58,11 +59,11 @@
     </Navbar>
   {/if}
 
-  <main>
+  <Main>
     {#if $isLogin}
       <Graph />
     {/if}
-  </main>
+  </Main>
 
   <Footer />
 </Container>
