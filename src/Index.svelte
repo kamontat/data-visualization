@@ -58,11 +58,18 @@
     </Navbar>
   {/if}
 
-  <main>
+  
     {#if $isLogin}
-      <Graph />
+      <main>
+        <Graph />
+      </main>
     {/if}
-  </main>
 
   <Footer />
 </Container>
+
+<style>
+  main {
+    flex-grow: 1;
+  }
+</style>
