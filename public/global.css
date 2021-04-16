@@ -8,6 +8,12 @@
   --round-sm: 0.25rem;
   --round-md: 0.5rem;
   --round-lg: 0.75rem;
+
+  --border-sm: 0.05rem;
+  --border-md: 0.15rem;
+  --border-lg: 0.25rem;
+
+  --max-width: 900px;
 }
 
 html,
@@ -57,7 +63,7 @@ textarea {
   /* reset default setting */
   margin-block-end: 0px;
   margin-block-start: 0px;
-  
+
   /* reset appearance on safari */
   -webkit-appearance: unset;
 }
@@ -85,7 +91,11 @@ button:not(:disabled):active {
   background-color: #ddd;
 }
 
-button:hover {
+button:not(:disabled):hover {
   color: #666;
   background-color: #c4c4c4;
+}
+
+input:checked {
+  background-color: #2196F3;
 }

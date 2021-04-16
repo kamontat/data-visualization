@@ -64,12 +64,19 @@
     if (pointKeys.length > 0 && groupKeys.length > 0) {
       list = pointKeys
         .map(key => {
-          return {
-            group: $dataGroup[$dataPoint[key].group].name,
-            value: $dataPoint[key].value,
-            date: new Date($dataPoint[key].timestamp),
-          };
+          const groupData = $dataGroup[$dataPoint[key].group];
+          if (groupData) {
+            return {
+              group: groupData.name,
+              value: $dataPoint[key].value,
+              date: new Date($dataPoint[key].timestamp),
+            };
+          } else {
+            console.error(`group '${$dataPoint[key].group}' is missing`);
+            return undefined;
+          }
         })
+        .filter(v => v !== undefined)
         .sort((a, b) => a.date.valueOf() - b.date.valueOf());
 
       if (list.length > 0) {
