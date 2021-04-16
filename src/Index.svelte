@@ -14,6 +14,7 @@
   import Graph from "./components/Graph.svelte";
   import Input from "./components/Input.svelte";
   import Signin from "./components/Signin.svelte";
+  import DataManage from "./components/DataManage.svelte";
 
   import { updateApplication } from "./stores/application";
   updateApplication(info);
@@ -62,6 +63,7 @@
   <Main>
     {#if $isLogin}
       <Graph />
+      <DataManage />
     {/if}
   </Main>
 
