@@ -10,6 +10,11 @@
 
   $: submitText = $isLogin ? "Signout" : "Signin";
 
+  const reset = (passwordOnly: boolean = false) => {
+    ! passwordOnly && (email = "")
+    password = ""
+  }
+
   const submit = (event: MouseEvent) => {
     event.preventDefault();
 
@@ -17,10 +22,12 @@
     promise
       .then(() => {
         error = undefined;
+        reset()
       })
       .catch(e => {
         console.error(e);
         error = e?.message ?? JSON.stringify(e);
+        reset(true)
       });
   };
 </script>
