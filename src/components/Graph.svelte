@@ -14,8 +14,8 @@
 
   let list: D3Datasource[] = [];
 
-  const beforeNow = 7 * 24 * 60 * 60 * 1000;
-  const afterNow = 1 * 24 * 60 * 60 * 1000;
+  const beforeNow = 14 * 24 * 60 * 60 * 1000; // 14 days
+  const afterNow = 1 * 24 * 60 * 60 * 1000;   // 1 day
   const now = +new Date();
   const options: interfaces.LineChartOptions = {
     title: "Visualization",
@@ -27,13 +27,6 @@
       left: {},
       bottom: {
         scaleType: interfaces.ScaleTypes.TIME,
-        // thresholds: [
-        //   {
-        //     value: new Date(),
-        //     label: "Today",
-        //     fillColor: "orange",
-        //   },
-        // ],
       },
     },
     legend: {
