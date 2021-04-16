@@ -15,7 +15,7 @@
   let list: D3Datasource[] = [];
 
   const beforeNow = 14 * 24 * 60 * 60 * 1000; // 14 days
-  const afterNow = 1 * 24 * 60 * 60 * 1000;   // 1 day
+  const afterNow = 1 * 24 * 60 * 60 * 1000; // 1 day
   const now = +new Date();
   const options: interfaces.LineChartOptions = {
     title: "Visualization",
@@ -51,7 +51,7 @@
     zoomBar: {
       top: {
         enabled: true,
-        type: "slider_view",
+        type: interfaces.ZoomBarTypes.SLIDER_VIEW,
         initialZoomDomain: [new Date(now - beforeNow), new Date(now + afterNow)],
       },
     },

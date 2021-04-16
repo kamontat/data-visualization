@@ -40,8 +40,10 @@ jobs:
       - name: Download dependencies
         run: yarn --verbose --prefer-offline
         timeout-minutes: 10
-      - name: Test code style with eslint
+      - name: Test typescript style with eslint
         run: yarn lint
+      - name: Test svelte style with svelte-check
+        run: yarn validate
       - name: Build svelte public data
         run: yarn build
 
