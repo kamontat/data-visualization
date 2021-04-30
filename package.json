@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@carbon/charts": "0.41.55",
-    "@carbon/charts-svelte": "0.41.55",
+    "@carbon/charts-svelte": "0.41.62",
     "carbon-components": "10.33.0",
     "d3": "5.16.0",
     "debug": "4.3.1",
