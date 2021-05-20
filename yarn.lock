@@ -100,18 +100,31 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@carbon/charts-svelte@0.41.55":
-  version "0.41.55"
-  resolved "https://registry.yarnpkg.com/@carbon/charts-svelte/-/charts-svelte-0.41.55.tgz#47ccbe5b69067d2fbba6857c5306e58e0c5e72e7"
-  integrity sha512-31buiFJSQlXVWgw6v+paDcVP9N9TM0SHNNVii8stIp6stvoCuMcetkGk0UBbvuI6dhGjWGJsTA+KUtbtWREOBA==
+"@carbon/charts-svelte@0.41.65":
+  version "0.41.65"
+  resolved "https://registry.yarnpkg.com/@carbon/charts-svelte/-/charts-svelte-0.41.65.tgz#34d6bfc5892749749c19a549facefaa71ce266e3"
+  integrity sha512-s83SkDtRX+1gopjqPX9D6dAUvtTtmE+M2TIv8+SSkzg9uYXepbOWs/A/wAxy6vZIwUCLYtm2bjwxsOdiPSym6w==
   dependencies:
-    "@carbon/charts" "^0.41.55"
+    "@carbon/charts" "^0.41.65"
     "@carbon/telemetry" "0.0.0-alpha.6"
 
-"@carbon/charts@0.41.55", "@carbon/charts@^0.41.55":
+"@carbon/charts@0.41.55":
   version "0.41.55"
   resolved "https://registry.yarnpkg.com/@carbon/charts/-/charts-0.41.55.tgz#e8a9d52d8123dd62d0ab9d2f6e4b05d48fa07e0e"
   integrity sha512-NiiDOSsHR8b0P6Hyq8wW7jrVHlWPClFzDyhh1LvaoEy2aUYGZ68bkLxIBIWInWW59g7TisATtHh9PcutIkdlKw==
+  dependencies:
+    "@carbon/colors" "10.15.0"
+    "@carbon/telemetry" "0.0.0-alpha.6"
+    "@carbon/utils-position" "1.1.1"
+    d3-cloud "1.2.5"
+    date-fns "2.8.1"
+    lodash-es "4.17.15"
+    resize-observer-polyfill "1.5.0"
+
+"@carbon/charts@^0.41.65":
+  version "0.41.65"
+  resolved "https://registry.yarnpkg.com/@carbon/charts/-/charts-0.41.65.tgz#e3bbea58db800c5d7b380a9f5ac43e2fa16aa3fd"
+  integrity sha512-NX1NCNAMo2ZJf5OMIUxmX9Q4uvlgThA+uJw7IILY4HmQJA3eQYPdKzczQfcwGBHbiaF76T8zOc5SEeaa5awfMA==
   dependencies:
     "@carbon/colors" "10.15.0"
     "@carbon/telemetry" "0.0.0-alpha.6"
