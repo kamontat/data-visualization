@@ -108,17 +108,17 @@
     "@carbon/charts" "^0.41.55"
     "@carbon/telemetry" "0.0.0-alpha.6"
 
-"@carbon/charts@0.41.55", "@carbon/charts@^0.41.55":
-  version "0.41.55"
-  resolved "https://registry.yarnpkg.com/@carbon/charts/-/charts-0.41.55.tgz#e8a9d52d8123dd62d0ab9d2f6e4b05d48fa07e0e"
-  integrity sha512-NiiDOSsHR8b0P6Hyq8wW7jrVHlWPClFzDyhh1LvaoEy2aUYGZ68bkLxIBIWInWW59g7TisATtHh9PcutIkdlKw==
+"@carbon/charts@0.41.67", "@carbon/charts@^0.41.55":
+  version "0.41.67"
+  resolved "https://registry.yarnpkg.com/@carbon/charts/-/charts-0.41.67.tgz#e5196a6e65eab15a0d019c8523f16b0627b3dfa7"
+  integrity sha512-O8+3K8CY72SvyN0/lIetFvxNrKM8mcnwP4npPzfSfgen23tBlyB0kDTO8cAnRGH29m3lMmGNhZe8twyBgyZaBA==
   dependencies:
     "@carbon/colors" "10.15.0"
     "@carbon/telemetry" "0.0.0-alpha.6"
     "@carbon/utils-position" "1.1.1"
     d3-cloud "1.2.5"
     date-fns "2.8.1"
-    lodash-es "4.17.15"
+    lodash-es "4.17.21"
     resize-observer-polyfill "1.5.0"
 
 "@carbon/colors@10.15.0":
@@ -2391,10 +2391,10 @@ locate-path@^2.0.0:
     p-locate "^2.0.0"
     path-exists "^3.0.0"
 
-lodash-es@4.17.15:
-  version "4.17.15"
-  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.15.tgz#21bd96839354412f23d7a10340e5eac6ee455d78"
-  integrity sha512-rlrc3yU3+JNOpZ9zj5pQtxnx2THmvRykwL4Xlxoa8I9lHBlVbbyPhgyPMioxVZ4NqyxaVVtaJnzsyOidQIhyyQ==
+lodash-es@4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash-es/-/lodash-es-4.17.21.tgz#43e626c46e6591b7750beb2b50117390c609e3ee"
+  integrity sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==
 
 lodash.camelcase@^4.3.0:
   version "4.3.0"
