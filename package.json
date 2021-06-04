@@ -36,7 +36,7 @@
     "svelte-check": "1.4.0",
     "svelte-preprocess": "4.7.3",
     "tslib": "2.2.0",
-    "typescript": "4.2.4"
+    "typescript": "4.3.2"
   },
   "dependencies": {
     "@carbon/charts": "0.41.67",
