@@ -100,15 +100,15 @@
     lodash "^4.17.19"
     to-fast-properties "^2.0.0"
 
-"@carbon/charts-svelte@0.41.55":
-  version "0.41.55"
-  resolved "https://registry.yarnpkg.com/@carbon/charts-svelte/-/charts-svelte-0.41.55.tgz#47ccbe5b69067d2fbba6857c5306e58e0c5e72e7"
-  integrity sha512-31buiFJSQlXVWgw6v+paDcVP9N9TM0SHNNVii8stIp6stvoCuMcetkGk0UBbvuI6dhGjWGJsTA+KUtbtWREOBA==
+"@carbon/charts-svelte@0.41.67":
+  version "0.41.67"
+  resolved "https://registry.yarnpkg.com/@carbon/charts-svelte/-/charts-svelte-0.41.67.tgz#11bc796df51c0e722fb1a96ead1306bd5c100b52"
+  integrity sha512-OIeKiemEdlvujTfMZnHTxJ1jnpZZD+qg966eVmvUa4lPvCgQApMlY7/iDZaiHrXXMVX1fiooo/A7CnLYsKddGw==
   dependencies:
-    "@carbon/charts" "^0.41.55"
+    "@carbon/charts" "^0.41.67"
     "@carbon/telemetry" "0.0.0-alpha.6"
 
-"@carbon/charts@0.41.67", "@carbon/charts@^0.41.55":
+"@carbon/charts@0.41.67", "@carbon/charts@^0.41.67":
   version "0.41.67"
   resolved "https://registry.yarnpkg.com/@carbon/charts/-/charts-0.41.67.tgz#e5196a6e65eab15a0d019c8523f16b0627b3dfa7"
   integrity sha512-O8+3K8CY72SvyN0/lIetFvxNrKM8mcnwP4npPzfSfgen23tBlyB0kDTO8cAnRGH29m3lMmGNhZe8twyBgyZaBA==
