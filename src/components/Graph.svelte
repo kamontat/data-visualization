@@ -14,8 +14,8 @@
 
   let list: D3Datasource[] = [];
 
-  const beforeNow = 14 * 24 * 60 * 60 * 1000; // 14 days
-  const afterNow = 1 * 24 * 60 * 60 * 1000; // 1 day
+  const beforeNow = 30 * 24 * 60 * 60 * 1000; // 30 days
+  const afterNow = 4 * 60 * 60 * 1000; // 4 hours
   const now = +new Date();
   const options: interfaces.LineChartOptions = {
     title: "Visualization",
