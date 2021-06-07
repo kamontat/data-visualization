@@ -524,10 +524,10 @@
     magic-string "^0.25.7"
     resolve "^1.17.0"
 
-"@rollup/plugin-node-resolve@11.2.1":
-  version "11.2.1"
-  resolved "https://registry.yarnpkg.com/@rollup/plugin-node-resolve/-/plugin-node-resolve-11.2.1.tgz#82aa59397a29cd4e13248b106e6a4a1880362a60"
-  integrity sha512-yc2n43jcqVyGE2sqV5/YCmocy9ArjVAP/BeXyTtADTBBX6V0e5UMqwO8CdQ0kzjb6zu5P1qMzsScCMRvE9OlVg==
+"@rollup/plugin-node-resolve@13.0.0":
+  version "13.0.0"
+  resolved "https://registry.yarnpkg.com/@rollup/plugin-node-resolve/-/plugin-node-resolve-13.0.0.tgz#352f07e430ff377809ec8ec8a6fd636547162dc4"
+  integrity sha512-41X411HJ3oikIDivT5OKe9EZ6ud6DXudtfNrGbC4nniaxx2esiWjkLOzgnZsWq1IM8YIeL2rzRGLZLBjlhnZtQ==
   dependencies:
     "@rollup/pluginutils" "^3.1.0"
     "@types/resolve" "1.17.1"
@@ -919,10 +919,10 @@ callsites@^3.0.0:
   resolved "https://registry.yarnpkg.com/callsites/-/callsites-3.1.0.tgz#b3630abd8943432f54b3f0519238e33cd7df2f73"
   integrity sha512-P8BjAsXvZS+VIDUI11hHCQEv74YT67YUi5JJFNWIqL235sBmjX4+qx9Muvls5ivyNENctx46xQLQ3aTuE7ssaQ==
 
-carbon-components@10.33.0:
-  version "10.33.0"
-  resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-10.33.0.tgz#c573de233530270d172a2cae0faba5d1530725e5"
-  integrity sha512-u9eqP0tZTdyd4RzD5isK1LqTH+Lb+3jUtei7dkKXBK5sm+Xx8yP8l2koOZqzsFzaMGpeZOlO/3ajmDQ+LK6Gbw==
+carbon-components@10.36.0:
+  version "10.36.0"
+  resolved "https://registry.yarnpkg.com/carbon-components/-/carbon-components-10.36.0.tgz#ce523b19df3a404e379113dafbbe0219bb22b17f"
+  integrity sha512-k+UR+Whz/qXbev2RT9JjV+QbkSKcHrLNF25bEpr3KZHmpCGhwGz5mVyv0ohZ4B6rKkpuvlgYfLsANL0yQX77zA==
   dependencies:
     "@carbon/telemetry" "0.0.0-alpha.6"
     flatpickr "4.6.1"
