@@ -24,10 +24,18 @@
   import { user, isReady, isLogin, updateUser } from "./stores/user";
   import { isExist } from "./firebase/utils/checker";
 
-  updateUser(firebase);
+  import { WarmupService } from "./services/warmup";
+  import { FirebaseService } from "./services/firebase";
 
+  updateUser(firebase);
   user.subscribe(user => {
     if (isExist(user)) {
+      const warmup = new WarmupService(firebase);
+      warmup.start().then(() => {
+        const service = new FirebaseService(firebase);
+        service.subscribe();
+      });
+
       const unsubscription = [
         updateDataPoint(firebase),
         updateDataGroup(firebase),

@@ -2,8 +2,8 @@ import Index from "./Index.svelte";
 
 import firebase from "firebase/app";
 
-// import debug from "debug";
-// debug.enable("*");
+import debug from "debug";
+debug.enable("*");
 
 import "firebase/auth";
 import "firebase/database";

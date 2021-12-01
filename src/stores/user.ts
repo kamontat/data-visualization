@@ -16,7 +16,7 @@ export const isReady = derived(user, u => u !== undefined);
 export const updateUser = (firebase: typeof Firebase): void => {
   firebase.auth().onAuthStateChanged(function (login) {
     logger("Auth action: %s", login ? "Login" : "Logout");
-    if (!login) {
+    if (!isExist(login)) {
       clearDataPoint();
       clearDataGroup();
     }
